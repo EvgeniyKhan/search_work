@@ -3,19 +3,25 @@ class Vacancy:
         self.title = title
         self.link = link
         self.salary = salary
-        self.checks_salary()
+        self.check_salary()
 
-    def checks_salary(self):
+    def check_salary(self):
         if self.salary and isinstance(self.salary, dict):
-            salary_from = self.salary.get("from")
-            salary_to = self.salary.get("to")
-            self.salary["from"] = salary_from if salary_from else 0
-            self.salary["to"] = salary_to if salary_to else 0
+            from_ = self.salary.get("from")
+            to = self.salary.get("to")
+            self.salary["from"] = from_ if from_ else 0
+            self.salary["to"] = to if to else 0
         else:
             self.salary = {
                 "from": 0,
-                "to": 0
+                "to": 0,
             }
 
     def __str__(self):
-        return f"\ntitle - {self.title}\nsalary - {self.salary}\n"
+        """
+        Возвращает строковое представление объекта вакансии.
+
+        Returns:
+        - str: Строковое представление вакансии.
+        """
+        return f"{self.title} ({self.salary})"
